@@ -1519,7 +1519,8 @@ public class OVRManager : MonoBehaviour, OVRMixedRealityCaptureConfiguration
         //For now, in XR SDK, only initialize if OVRPlugin is initialized.
         InitOVRManager();
 #else
-        if (OVRPlugin.initialized)
+        //if (OVRPlugin.initialized)
+        if (!OVRPlugin.initialized || (Settings.enabled && Settings.loadedDeviceName == OPENVR_UNITY_NAME_STR))
             InitOVRManager();
 #endif
     }
