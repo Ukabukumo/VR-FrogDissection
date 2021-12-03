@@ -1,35 +1,18 @@
 using UnityEngine;
 
-public class Pincette : MonoBehaviour
+public class Pincette : Instrument
 {
-    private void OnTriggerStay(Collider _other)
+    private void Update()
     {
-        // Соприкосновение с пыльником
-        if (_other.tag == "Anther")
-        {
-            // Нажатие на курок
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
-            {
-                // Присоединение пыльника к пинцету
-                GetComponent<FixedJoint>().connectedBody = _other.GetComponent<Rigidbody>();
-            }
-
-            // Отжатие курка
-            else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
-            {
-                // Отсоединяем пыльник от пинцета
-                GetComponent<FixedJoint>().connectedBody = null;
-            }
-        }
+        DetachObject();
     }
 
-    private void OnTriggerExit(Collider _other)
+    private void OnTriggerStay(Collider _other)
     {
-        // Окончание соприкосновения с пыльником
-        if (_other.tag == "Ansther")
+        // Соприкосновение с пыльником или c созревшей коробочкой
+        if (_other.tag == "Anther" || _other.tag == "RipenedBox")
         {
-            // Отсоединяем пыльник от пинцета
-            GetComponent<FixedJoint>().connectedBody = null;
+            AttachObject(_other);
         }
     }
 }

@@ -1,35 +1,18 @@
 using UnityEngine;
 
-public class Sponge : MonoBehaviour
+public class Sponge : Instrument
 {
-    private void OnTriggerEnter(Collider _other)
+    private void Update()
     {
-        // Соприкосновение с пыльцой
-        if (_other.tag == "Pollen")
-        {
-            // Нажатие на курок
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
-            {
-                // Присоединение пыльцы
-                GetComponent<FixedJoint>().connectedBody = _other.GetComponent<Rigidbody>();
-            }
-            
-            // Отжатие курка
-            else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
-            {
-                // Отсоединение пыльцы
-                GetComponent<FixedJoint>().connectedBody = null;
-            }
-        }
+        DetachObject();
     }
 
-    private void OnTriggerExit(Collider _other)
+    private void OnTriggerStay(Collider _other)
     {
-        // Окончание соприкосновения с пыльцой
-        if (_other.tag == "Pollen")
+        // Соприкосновение с пыльцой или семенами
+        if (_other.tag == "Pollen" || _other.tag == "Seeds")
         {
-            // Отсоединение пыльцы
-            GetComponent<FixedJoint>().connectedBody = null;
+            AttachObject(_other);
         }
     }
 }

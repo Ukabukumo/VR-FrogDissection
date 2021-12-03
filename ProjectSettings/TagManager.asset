@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Anther
   - Pollen
+  - RightHand
+  - LeftHand
+  - RipenedBox
+  - Seeds
   layers:
   - Default
   - TransparentFX
