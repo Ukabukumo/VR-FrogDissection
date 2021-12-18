@@ -3,13 +3,19 @@ using System.Collections;
 
 public class Stigma : MonoBehaviour
 {
-    [SerializeField] Material pollinatedMat;
-    [SerializeField] Material ripenedMat;
-    [SerializeField] GameObject timeRewinderPref;
+    [SerializeField] private Material pollinatedMat;
+    [SerializeField] private Material ripenedMat;
+    [SerializeField] private GameObject timeRewinderPref;
+    [SerializeField] private Transform begin;
 
     private const int TIME_RIPEN = 10;  // Время созревания
     private TimeRewinder tr;            // Инструмент для перемотки времени
     private Vector3 originScale;        // Первоначальный размер рыльца
+
+    public Transform Begin
+    {
+        get { return begin; }
+    }
 
     private void Awake()
     {
