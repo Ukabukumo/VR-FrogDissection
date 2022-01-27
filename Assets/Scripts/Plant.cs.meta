@@ -3,7 +3,15 @@ guid: 76548766a7f5e1d4f9b7a0831e0b4cd8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spawnPoint: {instanceID: 0}
+  - stemPref: {instanceID: 0}
+  - receptaclePref: {instanceID: 0}
+  - ovaryPref: {instanceID: 0}
+  - stylePref: {instanceID: 0}
+  - stigmaPref: {instanceID: 0}
+  - petalPref: {instanceID: 0}
+  - sepalPref: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

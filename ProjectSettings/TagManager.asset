@@ -10,6 +10,7 @@ TagManager:
   - LeftHand
   - RipenedBox
   - Seeds
+  - Pot
   layers:
   - Default
   - TransparentFX

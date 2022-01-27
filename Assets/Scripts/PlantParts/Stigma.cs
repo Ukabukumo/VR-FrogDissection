@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class Stigma : MonoBehaviour
 {
@@ -38,6 +39,20 @@ public class Stigma : MonoBehaviour
     /// </summary>
     private void Pollination(Collider _pollen)
     {
+        // Определяем код нового растения
+        string _firstCode = GetComponent<PlantCode>().Code;
+        string _secondCode = _pollen.GetComponent<PlantCode>().Code;
+
+        if (Convert.ToInt32(_firstCode) < Convert.ToInt32(_secondCode))
+        {
+            GetComponent<PlantCode>().Code = _firstCode + _secondCode;
+        }
+
+        else
+        {
+            GetComponent<PlantCode>().Code = _secondCode + _firstCode;
+        }
+
         // Уничтожение пыльцы
         Destroy(_pollen.gameObject);
 

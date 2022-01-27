@@ -9,8 +9,8 @@ public class Pincette : Instrument
 
     private void OnTriggerStay(Collider _other)
     {
-        // Соприкосновение с пыльником или c созревшей коробочкой
-        if (_other.tag == "Anther" || _other.tag == "RipenedBox")
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ c пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        if (_other.tag == "RipenedBox" || _other.tag == "Anther")
         {
             AttachObject(_other);
         }

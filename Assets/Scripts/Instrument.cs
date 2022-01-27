@@ -5,41 +5,41 @@ public class Instrument : MonoBehaviour
     private FixedJoint fj;
 
     /// <summary>
-    /// Присоединение объекта к инструменту.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
     protected void AttachObject(Collider _object)
     {
-        // Нажатие IndexTrigger на ЛЕВОЙ руке
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ IndexTrigger пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
-            // Если инструмент в ЛЕВОЙ руке
+            // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             if (CheckHand("LeftHand"))
             {
-                // Если на объекте нет компонента FixedJoint
+                // пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FixedJoint
                 if (fj == null)
                 {
-                    // Добавляем на инструмент компонент FixedJoint
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FixedJoint
                     fj = gameObject.AddComponent<FixedJoint>();
 
-                    // Присоединение объекта к инструменту
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     GetComponent<FixedJoint>().connectedBody = _object.GetComponent<Rigidbody>();
                 }
             }
         }
 
-        // Нажатие IndexTrigger на ПРАВОЙ руке
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ IndexTrigger пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
-            // Если инструмент в правой руке
+            // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             if (CheckHand("RightHand"))
             {
-                // Если на объекте нет компонента FixedJoint
+                // пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FixedJoint
                 if (fj == null)
                 {
-                    // Добавляем на инструмент компонент FixedJoint
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FixedJoint
                     fj = gameObject.AddComponent<FixedJoint>();
 
-                    // Присоединение объекта к инструменту
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     GetComponent<FixedJoint>().connectedBody = _object.GetComponent<Rigidbody>();
                 }
             }
@@ -47,78 +47,81 @@ public class Instrument : MonoBehaviour
     }
 
     /// <summary>
-    /// Отсоединение объекта от инструмента.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
     protected void DetachObject()
     {
-        // Отжатие IndexTrigger или HandTrigger на ЛЕВОЙ руке
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ IndexTrigger пїЅпїЅпїЅ HandTrigger пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         if (!OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
         {
-            // Если инструмент в ЛЕВОЙ руке
+            // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             if (CheckHand("LeftHand"))
             {
                 if (fj != null)
                 {
-                    // Отсоединяем прикреплённый к инструменту объект
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                     Destroy(fj);
                 }
             }
         }
 
-        // Отжатие IndexTrigger или HandTrigger на ПРАВОЙ руке
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ IndexTrigger пїЅпїЅпїЅ HandTrigger пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         if (!OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
         {
-            // Если инструмент в ПРАВОЙ руке
+            // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             if (CheckHand("RightHand"))
             {
                 if (fj != null)
                 {
-                    // Отсоединяем прикреплённый к инструменту объект
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                     Destroy(fj);
                 }
             }
         }
 
-        // Рука, в которой находится инструмент
+        // пїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         OVRGrabber _currentHand = GetComponent<OVRGrabbable>().grabbedBy;
 
-        // Если инструмент не в руке
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
         if (_currentHand == null)
         {
             if (fj != null)
             {
-                // Отсоединяем прикреплённый к инструменту объект
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                 Destroy(fj);
             }
         }
     }
 
     /// <summary>
-    /// Толчение пыльника.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
-    protected void CrushAnther(Collider _object, GameObject _pollenPref)
+    protected void Crush(Collider _object, GameObject _objectPref, string _plantCode)
     {
-        // Уничтожение пыльника
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (_object.gameObject != null)
         {
             Destroy(_object.gameObject);
         }
 
-        // Создание пыльцы
-        Instantiate(_pollenPref, _object.transform.position, Quaternion.identity);
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        GameObject _newObject = Instantiate(_objectPref, _object.transform.position, Quaternion.identity);
+        
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        _newObject.GetComponent<PlantCode>().Code = _plantCode;
     }
 
     /// <summary>
-    /// Проверка руки, в которой находится инструмент.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
     protected bool CheckHand(string _handName)
     {
-        // Рука, в которой находится инструмент
+        // пїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         OVRGrabber _currentHand = GetComponent<OVRGrabbable>().grabbedBy;
 
         if (_currentHand != null)
         {
-            // Если инструмент в соответствующей руке
+            // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             if (_currentHand.tag == _handName)
             {
                 return true;

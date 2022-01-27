@@ -9,7 +9,7 @@ public class Sponge : Instrument
 
     private void OnTriggerStay(Collider _other)
     {
-        // Соприкосновение с пыльцой или семенами
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (_other.tag == "Pollen" || _other.tag == "Seeds")
         {
             AttachObject(_other);

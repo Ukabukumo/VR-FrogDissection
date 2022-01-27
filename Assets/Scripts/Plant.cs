@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    [SerializeField] float time = 0.01f;
+    float time = 0.01f;
     [SerializeField] int numberOfFlowers = 5;
     [SerializeField] int numberOfLeafs = 3;
     [SerializeField] float stemBend = 5f;
     [SerializeField] float stemSkew = 20f;
+    [SerializeField] float plantScale = 0.02f;
 
     [SerializeField] private GameObject spawnPoint;
     [SerializeField] private Stem stemPref;
@@ -18,8 +19,8 @@ public class Plant : MonoBehaviour
     [SerializeField] private Stigma stigmaPref;
     [SerializeField] private Petal petalPref;
     [SerializeField] private Sepal sepalPref;
+    [SerializeField] private Leaf leafPref;
     [SerializeField] private Filament[] filamentPrefs;
-    [SerializeField] private Leaf[] leafPrefs;
     [SerializeField] private Anther[] antherPrefs;
 
     private List<List<Stem>> spawnedStems = new List<List<Stem>>();             // Сгенерированные стебли
@@ -32,17 +33,26 @@ public class Plant : MonoBehaviour
     private List<List<Sepal>> spawnedSepals = new List<List<Sepal>>();          // Сгенерированные чашелистики
     private List<List<Filament>> spawnedFilaments = new List<List<Filament>>(); // Сгенерированные нити
     private List<List<Anther>> spawnedAnthers = new List<List<Anther>>();       // Сгенерированные пыльники
+    private List<GameObject> flowers = new List<GameObject>();                  // Сгенерированные цветы
 
-    private List<GameObject> flowers = new List<GameObject>();
-
-    private void Start()
+    /// <summary>
+    /// Время роста одного участка стебля
+    /// </summary>
+    public float Time
     {
-        CreatePlant();
+        set { time = value; }
     }
 
-    private void CreatePlant()
+    /// <summary>
+    /// Создание растения
+    /// </summary>
+    /// <param name="_plantCode"></param>
+    /// <param name="_plant"></param>
+    public void CreatePlant(string _plantCode, GameObject _plant)
     {
-        CreateStems();
+        GetComponent<PlantCode>().Code = _plantCode;
+
+        CreateStems(_plant.transform);
         CreateLeafs();
         CreateFlowers();
 
@@ -51,6 +61,9 @@ public class Plant : MonoBehaviour
 
     private void CreateFlowers()
     {
+        // Запоминаем код растения
+        string _plantCode = GetComponent<PlantCode>().Code;
+
         for (int i = 0; i < numberOfFlowers; i++)
         {
             // Хранилище для элементов цветка
@@ -81,6 +94,9 @@ public class Plant : MonoBehaviour
             _newStigma.transform.position = _newStyle.End.position -
                 (_newStigma.Begin.position - _newStigma.transform.position);
 
+            // Передача кода растения рыльцу
+            _newStigma.GetComponent<PlantCode>().Code = _plantCode;
+
             // Лепестки
             List<Petal> _petals = new List<Petal>();
 
@@ -89,8 +105,12 @@ public class Plant : MonoBehaviour
                 // Создаём новый лепесток
                 Petal _newPetal = Instantiate(petalPref, _flower);
 
+                // Назначаем соответствующий материал
+                _newPetal.GetComponent<Renderer>().material = 
+                    GetComponent<PlantMaterials>().GetPetalMat(_plantCode);
+
                 // Назначаем поворот в зависимости от позиции
-                _newPetal.transform.rotation *= Quaternion.Euler(90f * j, 0f, 0f);
+                _newPetal.transform.rotation *= Quaternion.Euler(0f, 0f, 90f * j);
 
                 // Устанавливаем лепесток в определённую точку
                 _newPetal.transform.position = _newReceptacle.PetalConnects[j].position -
@@ -146,6 +166,9 @@ public class Plant : MonoBehaviour
                 _newAnther.transform.position = _filaments[j].transform.position -
                     (_newAnther.Begin.position - _newAnther.transform.position);
 
+                // Передача кода растения пыльнику
+                _newAnther.GetComponent<PlantCode>().Code = _plantCode;
+
                 _anthers.Add(_newAnther);
             }
 
@@ -169,6 +192,12 @@ public class Plant : MonoBehaviour
             StemsGrowth();
             LeafsGrowth();
             FlowersGrowth();
+
+            // Мгновенный рост растения
+            if (time == 0f)
+            {
+                continue;
+            }
 
             yield return new WaitForSeconds(time);
         }
@@ -195,10 +224,8 @@ public class Plant : MonoBehaviour
         }    
     }
 
-    private void CreateStems()
+    private void CreateStems(Transform _plant)
     {
-        Transform _plant = new GameObject("Plant").transform;
-
         for (int i = 0; i < numberOfFlowers + numberOfLeafs; i++)
         {
             Transform _parent;
@@ -228,6 +255,7 @@ public class Plant : MonoBehaviour
             // Выбираем случайный поворот стебля
             Quaternion _rotation = Quaternion.Euler(Random.Range(-stemSkew, stemSkew), 
                 Random.Range(0f, 360f), Random.Range(-stemSkew, stemSkew));
+            _rotation *= _plant.transform.rotation * Quaternion.Euler(90f, 0f, 0f);
             _newStem.transform.rotation = _rotation;
 
             // Устанавливаем стебель в определённую точку
@@ -240,13 +268,18 @@ public class Plant : MonoBehaviour
 
     private void CreateLeafs()
     {
+        string _plantCode = GetComponent<PlantCode>().Code;
+
         for (int i = spawnedStems.Count - 1; i >= numberOfFlowers; i--)
         {
             Transform _parent = spawnedStems[i][0].transform.parent.transform.parent;
 
             // Создаём новый лист
-            int _rnd = new System.Random().Next(0, 5);
-            Leaf _newLeaf = Instantiate(leafPrefs[_rnd], _parent);
+            Leaf _newLeaf = Instantiate(leafPref, _parent);
+
+            // Назначаем соответствующий материал
+            //_newLeaf.GetComponent<Renderer>().materials =
+            //    GetComponent<PlantMaterials>().GetLeafMat(_plantCode);
 
             // Выбираем случайный поворот листа
             Quaternion _rotation =
@@ -302,7 +335,8 @@ public class Plant : MonoBehaviour
             Leaf _leaf = spawnedLeafs[spawnedStems.Count - i - 1];
 
             // Увеличиваем лист
-            _leaf.transform.localScale *= 1.02f;
+            //_leaf.transform.localScale *= 1.02f;
+            _leaf.transform.localScale *= 1f + plantScale;
 
             // Назначаем поворот идентичный стеблю
             Vector3 _prevStemRot = -spawnedStems[i][spawnedStems[i].Count - 2].transform.rotation.eulerAngles;
@@ -321,7 +355,8 @@ public class Plant : MonoBehaviour
         for (int i = 0; i < numberOfFlowers; i++)
         {
             // Увеличиваем цветок
-            flowers[i].transform.localScale *= 1.015f;
+            //flowers[i].transform.localScale *= 1.015f;
+            flowers[i].transform.localScale *= 1f + plantScale;
 
             // Назначаем поворот идентичный стеблю
             flowers[i].transform.rotation = spawnedStems[i][spawnedStems[i].Count - 1].transform.rotation;
@@ -372,6 +407,25 @@ public class Plant : MonoBehaviour
                     spawnedFilaments[i][j].End.position -
                     (spawnedAnthers[i][j].Begin.position - spawnedAnthers[i][j].transform.position);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider _other)
+    {
+        // Если произошло соприкосновение с семенами
+        if (_other.tag == "Seeds")
+        {
+            // Запоминаем код растения
+            string _plantCode = _other.GetComponent<PlantCode>().Code;
+
+            // Создаём растение
+            CreatePlant(_plantCode, gameObject);
+
+            // Уничтожаем семена
+            Destroy(_other);
+
+            // Отключаем триггер
+            GetComponent<SphereCollider>().enabled = false;
         }
     }
 }

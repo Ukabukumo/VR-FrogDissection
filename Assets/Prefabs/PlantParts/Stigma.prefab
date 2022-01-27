@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 2498277961567098940}
   - component: {fileID: 2498277961567098939}
   - component: {fileID: 2498277961567098938}
+  - component: {fileID: 2571471327799185857}
   - component: {fileID: 8094738394006244195}
   - component: {fileID: 5774353060715895742}
+  - component: {fileID: -3076900677274676001}
   m_Layer: 0
   m_Name: Stigma
   m_TagString: Untagged
@@ -98,6 +100,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &2571471327799185857
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498277961567098937}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.75933754
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8094738394006244195
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106,7 +121,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2498277961567098937}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -130,6 +145,18 @@ MonoBehaviour:
   ripenedMat: {fileID: 2100000, guid: 462758b0840c3b34fbc508b1622c3236, type: 2}
   timeRewinderPref: {fileID: 3865929967218849088, guid: a1ea6ae2545a5d94ebc12f70bc2dea01, type: 3}
   begin: {fileID: 2916283254343152241}
+--- !u!114 &-3076900677274676001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498277961567098937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84df3b0d022db7246bf4b804c0968e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8614513703810952355
 GameObject:
   m_ObjectHideFlags: 0

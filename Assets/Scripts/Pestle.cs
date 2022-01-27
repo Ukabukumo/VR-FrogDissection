@@ -10,16 +10,15 @@ public class Pestle : Instrument
         // Соприкосновение с пыльником
         if (_other.tag == "Anther")
         {
-            CrushAnther(_other, pollenPref);
+            string _plantCode = _other.GetComponent<PlantCode>().Code;
+            Crush(_other, pollenPref, _plantCode);
         }
 
         // Соприкосновение с созревшей коробочкой
         if (_other.tag == "RipenedBox")
         {
-            Debug.Log("RipenedBox");
-
-
-            CrushAnther(_other, seedsPref);
+            string _plantCode = _other.GetComponent<PlantCode>().Code;
+            Crush(_other, seedsPref, _plantCode);
         }
     }
 }
