@@ -15,10 +15,6 @@ public class Style : MonoBehaviour
         get { return end; }
     }
 
-    /// <summary>
-    /// Присоединение рыльца к столбику пестика
-    /// </summary>
-    /// <param name="_stigma"></param>
     public void AttachStigma(Stigma _stigma)
     {
         GetComponent<FixedJoint>().connectedBody = _stigma.GetComponent<Rigidbody>();

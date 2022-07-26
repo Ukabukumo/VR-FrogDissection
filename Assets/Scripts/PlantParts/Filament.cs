@@ -15,10 +15,6 @@ public class Filament : MonoBehaviour
         get { return end; }
     }
 
-    /// <summary>
-    /// ѕрисоединение пыльника к тычиночной нити
-    /// </summary>
-    /// <param name="_anther"></param>
     public void AttachAnther(Anther _anther)
     {
         GetComponent<FixedJoint>().connectedBody = _anther.GetComponent<Rigidbody>();

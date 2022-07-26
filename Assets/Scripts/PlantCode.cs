@@ -24,7 +24,6 @@ public class PlantCode : MonoBehaviour
 
     private void Awake()
     {
-        // Коды существующих растений
         correctCodes = new string[] {
         "01",
         "10",
@@ -43,7 +42,6 @@ public class PlantCode : MonoBehaviour
 
     public bool IsCorrectCode(string _plantCode)
     {
-        // Проверка существования растения
         foreach (string code in correctCodes)
         {
             if (_plantCode == code)
@@ -57,7 +55,6 @@ public class PlantCode : MonoBehaviour
 
     public void RandomCode()
     {
-        // Выбираем случайный код растения
         int _ind = new System.Random().Next(2, 12);
         code = correctCodes[_ind];
     }

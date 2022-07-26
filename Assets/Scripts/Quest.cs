@@ -11,14 +11,11 @@ public class Quest : MonoBehaviour
     [SerializeField] private Material correctMat;
     [SerializeField] private Material wrongMat;
 
-    [SerializeField] private float QUEST_TIME = 80f; // ����� �� �������
+    [SerializeField] private float QUEST_TIME = 80f;
 
     private void Start()
     {
-        // �������� ��������� ��� �������� ��� �������
         plantStand.GetComponent<PlantCode>().RandomCode();
-
-        // ��������� ��������������� ��������
         petalIcon.GetComponent<Renderer>().material =
             petalIcon.GetComponent<PlantMaterials>().GetPetalMat(plantStand.GetComponent<PlantCode>().Code);
 
@@ -29,14 +26,11 @@ public class Quest : MonoBehaviour
     {
         float _timeLeft = QUEST_TIME;
 
-        // ���� �� ����������� �����
         while (_timeLeft >= 0)
         {
-            // ��������� ����������
             time.GetComponent<TextMeshPro>().text = "Оставшееся время " + string.Format("{0:D2}:{1:D2}", 
                 (int)_timeLeft / 60, (int)_timeLeft % 60);
 
-            // �������� ����� � ����� ���������� �����
             _timeLeft -= Time.deltaTime;
 
             yield return null;
@@ -44,7 +38,6 @@ public class Quest : MonoBehaviour
 
         time.GetComponent<TextMeshPro>().text = "Время вышло!";
 
-        // �������� ������������ ���������� �������
         CheckResult();
     }
 

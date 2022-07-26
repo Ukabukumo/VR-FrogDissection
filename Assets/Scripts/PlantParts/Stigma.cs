@@ -9,9 +9,9 @@ public class Stigma : MonoBehaviour
     [SerializeField] private GameObject timeRewinderPref;
     [SerializeField] private Transform begin;
 
-    private const int TIME_RIPEN = 10;  // Время созревания
-    private TimeRewinder tr;            // Инструмент для перемотки времени
-    private Vector3 originScale;        // Первоначальный размер рыльца
+    private const int TIME_RIPEN = 10;
+    private TimeRewinder tr;
+    private Vector3 originScale;
 
     public Transform Begin
     {
@@ -20,13 +20,11 @@ public class Stigma : MonoBehaviour
 
     private void Awake()
     {
-        // Запоминаем первоначальный размер
         originScale = transform.localScale;
     }
 
     private void OnTriggerEnter(Collider _other)
     {
-        // Соприкосновение с пыльцой
         if (_other.tag == "Pollen")
         {
             Pollination(_other);
@@ -34,12 +32,8 @@ public class Stigma : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Опыление рыльца пестика.
-    /// </summary>
     private void Pollination(Collider _pollen)
     {
-        // Определяем код нового растения
         string _firstCode = GetComponent<PlantCode>().Code;
         string _secondCode = _pollen.GetComponent<PlantCode>().Code;
 
@@ -53,32 +47,22 @@ public class Stigma : MonoBehaviour
             GetComponent<PlantCode>().Code = _secondCode + _firstCode;
         }
 
-        // Уничтожение пыльцы
         Destroy(_pollen.gameObject);
 
-        // Показываем, что рыльце пестика опылено
         GetComponent<MeshRenderer>().material = pollinatedMat;
     }
 
-    /// <summary>
-    /// Перемотка времени до нужного момента.
-    /// </summary>
     private IEnumerator RewindTime(int _timeBound)
     {
-        // Создаём объект для перемотки времени
         tr = Instantiate(timeRewinderPref).GetComponent<TimeRewinder>();
         tr.TimeRewinderInit(_timeBound);
 
         while (tr != null)
         {
-            // Ожидание конца кадра
             yield return null;
-
-            // Увеличение размеров коробочки
             transform.localScale = originScale * (1f + tr.CurrentTime / 10);
         }
 
-        // Показываем, что коробочка созрела
         GetComponent<MeshRenderer>().material = ripenedMat;
         tag = "RipenedBox";
     }

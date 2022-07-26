@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    private OVRInput.Button leftRotateButton = OVRInput.Button.Three; // Кнопка поворота камеры ВЛЕВО на 90 градусов
-    private OVRInput.Button rightRotateButton = OVRInput.Button.Four; // Кнопка поворота камеры ВПРАВО на 90 градусов
+    private OVRInput.Button leftRotateButton = OVRInput.Button.Three;
+    private OVRInput.Button rightRotateButton = OVRInput.Button.Four;
     private Transform curTransform;
-
+    
     private void Awake()
     {
         curTransform = transform;

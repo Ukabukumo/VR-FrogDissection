@@ -45,38 +45,6 @@ public class PlantMaterials : MonoBehaviour
             { "01100110",     petalMats[11] }
         };
 
-        /*leafsUp = new Dictionary<string, Material>()
-        {
-            { "01",           leafMatsUp[0] },
-            { "10",           leafMatsUp[1] },
-            { "0110",         leafMatsUp[2] },
-            { "010110",       leafMatsUp[3] },
-            { "100110",       leafMatsUp[4] },
-            { "10010110",     leafMatsUp[5] },
-            { "01010110",     leafMatsUp[6] },
-            { "0110010110",   leafMatsUp[7] },
-            { "010110100110", leafMatsUp[8] },
-            { "0110100110",   leafMatsUp[9] },
-            { "10100110",     leafMatsUp[10] },
-            { "01100110",     leafMatsUp[11] }
-        };*/
-
-        /*leafsDown = new Dictionary<string, Material>()
-        {
-            { "01",           leafMatsDown[0] },
-            { "10",           leafMatsDown[1] },
-            { "0110",         leafMatsDown[2] },
-            { "010110",       leafMatsDown[3] },
-            { "100110",       leafMatsDown[4] },
-            { "10010110",     leafMatsDown[5] },
-            { "01010110",     leafMatsDown[6] },
-            { "0110010110",   leafMatsDown[7] },
-            { "010110100110", leafMatsDown[8] },
-            { "0110100110",   leafMatsDown[9] },
-            { "10100110",     leafMatsDown[10] },
-            { "01100110",     leafMatsDown[11] }
-        };*/
-
         leafsDown = new Dictionary<string, Material>()
         {
             { "01",           petalMats[0] },

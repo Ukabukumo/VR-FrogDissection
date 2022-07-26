@@ -16,16 +16,13 @@ public class CheckPlant : MonoBehaviour
 
     private void Start()
     {
-        // �������� ��������� ��� �������� ��� �������
         GetComponent<PlantCode>().RandomCode();
     }
 
     private void OnTriggerEnter(Collider _other)
     {
-        // ���� ��� ������ � ���������
         if (_other.tag == "Pot")
         {
-            // ���� ��� �������� ��������� ���������
             if (_other.GetComponent<PlantCode>().Code == GetComponent<PlantCode>().Code)
             {
                 correctPlant = true;
@@ -35,10 +32,8 @@ public class CheckPlant : MonoBehaviour
 
     private void OnTriggerExit(Collider _other)
     {
-        // ���� ��� ������ � ���������
         if (_other.tag == "Pot")
         {
-            // ���� ��� �������� ��������� ���������
             if (_other.GetComponent<PlantCode>().Code == GetComponent<PlantCode>().Code)
             {
                 correctPlant = false;
